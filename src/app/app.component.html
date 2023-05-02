@@ -3,10 +3,10 @@
 <nav class="header navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Crawler</a>
-    <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-     <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- menu -->
       <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -35,10 +35,22 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form> -->
-    <!-- </div> -->
+      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">credentials</button>
+    </div>
   </div>
 </nav>
+<!-- buttons -->
+<div class="container-fluid container-overview">
+  <div class="row g-2 p-2">
+    <div class="col">
+      <app-state-overview
+      [state]="state"
+      >
+      </app-state-overview>
 
+    </div>
+  </div>
+</div>
 <!-- buttons -->
 <div class="container-fluid container-actions">
   <div class="row g-2 p-2">
@@ -50,6 +62,8 @@
         [buttonLabel]="action.buttonLabel"
         [buttonStyle]="action.buttonStyle"
         [url]="action.url"
+        [id]="action.id?this.state?.last?.index:''"
+        (onState)="updateState($event)"
       ></app-action-card>
     </div>
     <!-- <div class="col-12 col-lg-6">
@@ -115,4 +129,30 @@
       Footer
     </div>
   </div>
+</div>
+
+
+
+<!-- connexion -->
+
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="mb-3 row">
+      <label for="inputLogin" class="col-sm-2 col-form-label">Login</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputLogin">
+      </div>
+      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword">
+      </div>
+    </div>
+  </div>
+
 </div>
