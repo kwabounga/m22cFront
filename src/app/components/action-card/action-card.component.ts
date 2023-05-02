@@ -1,12 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input , Output , EventEmitter} from '@angular/core';
 import { HttpActionService } from 'src/app/services/http-action.service';
-
+import { State } from 'src/app/interfaces/state';
 @Component({
   selector: 'app-action-card',
   templateUrl: './action-card.component.html',
   styleUrls: ['./action-card.component.less']
 })
 export class ActionCardComponent implements OnInit {
+
+  @Input()
+  id:number|string|undefined='';
 
   @Input()
   url:string='';
@@ -21,14 +24,22 @@ export class ActionCardComponent implements OnInit {
   @Input()
   buttonStyle:string='';
 
+  @Output()
+  onState = new EventEmitter();
+
   constructor(private ajax:HttpActionService) { }
 
   ngOnInit(): void {
 
   }
   get(){
-    this.ajax.getUrl(this.url).subscribe((response)=>{
-      console.log(response);
+    this.ajax.getUrl(this.url.replace(':id', this.id?this.id.toString():'')).subscribe((response:State)=>{
+      /* let s:State = {
+        state: response.state,
+        last: response.last,
+      } */
+      // console.log(s);
+      this.onState.emit(response)
     })
   }
 }

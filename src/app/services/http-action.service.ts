@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { State } from '../interfaces/state';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +10,13 @@ export class HttpActionService {
 
 
   getUrl(url:string) {
-    console.log(url)
-    return this.http.get(url);
+    // console.log(url)
+    let headers = {
+      "Content-Type": "application/json"
+    }
+    /* if(state.islogged){
+
+    } */
+    return this.http.get<State>(url,{headers: headers});
   }
 }

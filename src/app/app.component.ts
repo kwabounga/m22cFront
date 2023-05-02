@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { State } from './interfaces/state';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,19 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title:string = 'm22cFront';
   terminal:any = { value:"output test"}
+  id:number = -1;
+
+  state:State = {
+    state:false,
+    last:{
+      id:-0,
+      index:-1,
+      url:''
+    },
+    crawled:[],
+    all:[]
+  };
+
   actions:any[] = [
     {
       title: "Start",
@@ -32,6 +46,7 @@ export class AppComponent {
       buttonLabel: "Relancer à :id",
       buttonStyle: "warning",
       url: "http://localhost:1223/start/:id",
+      id:true
     },
     {
       title: "Info",
@@ -41,5 +56,15 @@ export class AppComponent {
       buttonStyle: "info",
       url: "http://localhost:1223/last",
     }
-  ]
+  ];
+
+  updateState(event:State){
+
+    console.log(event, event.last.index)
+    this.id = event.last.index
+    this.state = event;
+      this.terminal.value = this.state.crawled?.map((s)=>{
+        return s.url + ' crawled'
+      }).join('\n')
+  }
 }

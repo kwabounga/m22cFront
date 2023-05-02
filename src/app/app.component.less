@@ -14,9 +14,9 @@
   overflow: hidden;
   background-color: rgb(15, 15, 16);
   min-height: 200px;
-  max-height: 500px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  max-height: 280px;
+ /*  overflow-x: hidden;
+  overflow-y: auto; */
 }
 
 .terminal::before {
@@ -39,6 +39,13 @@
   color: white;
   padding: 0 1rem 1rem;
   margin: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 275px;
+
+}
+.container-terminal{
+  min-height: auto;
 }
 .container-footer{
   bottom:0;
