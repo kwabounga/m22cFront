@@ -5,18 +5,17 @@ import { State } from '../interfaces/state';
   providedIn: 'root'
 })
 export class HttpActionService {
-
   constructor(private http: HttpClient) { }
 
 
-  getUrl(url:string) {
+  getUrl(url:string, state:State|undefined) {
     // console.log(url)
-    let headers = {
+    let headers:any = {
       "Content-Type": "application/json"
     }
-    /* if(state.islogged){
-
-    } */
+    if (state?.basicAuth){
+      headers['authorization'] = state.basicAuth;
+    } 
     return this.http.get<State>(url,{headers: headers});
   }
 }

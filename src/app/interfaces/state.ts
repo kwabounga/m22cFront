@@ -4,6 +4,7 @@ export interface Last {
   url:string;
 }
 export interface State {
+  basicAuth:boolean|string;
   state:boolean;
   last:Last;
   crawled:any[];

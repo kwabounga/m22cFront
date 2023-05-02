@@ -56,13 +56,14 @@
   <div class="row g-2 p-2">
     <div *ngFor="let action of actions" class="col-12 col-lg-6">
       <app-action-card
+        [state]="state"
         [title]="action.title"
         [subTitle]="action.subTitle"
         [description]="action.description"
         [buttonLabel]="action.buttonLabel"
         [buttonStyle]="action.buttonStyle"
         [url]="action.url"
-        [id]="action.id?this.state?.last?.index:''"
+        [id]="action.id?this.state.last.index:''"
         (onState)="updateState($event)"
       ></app-action-card>
     </div>
@@ -143,16 +144,15 @@
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-    <div class="mb-3 row">
-      <label for="inputLogin" class="col-sm-2 col-form-label">Login</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputLogin">
-      </div>
-      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword">
-      </div>
+    <div class="mb-3">
+      <label for="inputLogin" class="form-label">Login</label>
+      <input type="text" class="form-control" id="inputLogin" [(ngModel)]="credentials.username" name="username">
     </div>
+    <div class="mb-3">
+      <label for="inputPassword" class="form-label">Password</label>
+      <input type="password" class="form-control" id="inputPassword" [(ngModel)]="credentials.password" name="password">
+    </div>
+    <button class="btn btn-secondary" (click)="generateBasicAuth()">connection</button>
   </div>
 
 </div>

@@ -9,6 +9,9 @@ import { State } from 'src/app/interfaces/state';
 export class ActionCardComponent implements OnInit {
 
   @Input()
+  state?:State;
+
+  @Input()
   id:number|string|undefined='';
 
   @Input()
@@ -33,7 +36,7 @@ export class ActionCardComponent implements OnInit {
 
   }
   get(){
-    this.ajax.getUrl(this.url.replace(':id', this.id?this.id.toString():'')).subscribe((response:State)=>{
+    this.ajax.getUrl(this.url.replace(':id', this.id?this.id.toString():''), this.state).subscribe((response:State)=>{
       /* let s:State = {
         state: response.state,
         last: response.last,

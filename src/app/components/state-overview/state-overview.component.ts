@@ -10,11 +10,11 @@ export class StateOverviewComponent implements OnInit {
   @Input()
   state?:State ;
   constructor() { }
-  get percent():string{
-    if(!this.state) return '0';
-    console.log(`(this.state.last.index * 100 / this.state.all.length) (${this.state.last.index} * 100 / ${this.state.all.length})`,(this.state.last.index * 100 / this.state.all.length))
-    return (this.state.last.index * 100 / this.state.all.length) + '';
-  }
+  // get percent():string{
+  //   if(!this.state) return '0';
+  //   console.log(`(this.state.last.index * 100 / this.state.all.length) (${this.state.last.index} * 100 / ${this.state.all.length})`,(this.state.last.index * 100 / this.state.all.length))
+  //   return (this.state.last.index * 100 / this.state.all.length) + '';
+  // }
   ngOnInit(): void {
 
   }

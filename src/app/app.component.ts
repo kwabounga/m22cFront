@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { State } from './interfaces/state';
+import { Buffer } from 'buffer';
+import { HttpActionService } from './services/http-action.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,15 @@ export class AppComponent {
   title:string = 'm22cFront';
   terminal:any = { value:"output test"}
   id:number = -1;
+  timerUpdater:NodeJS.Timer | undefined;
+
+  credentials = {
+    username:'',
+    password:''
+  }
 
   state:State = {
+    basicAuth:false,
     state:false,
     last:{
       id:-0,
@@ -58,13 +67,42 @@ export class AppComponent {
     }
   ];
 
+  constructor(protected ajax:HttpActionService){}
+
   updateState(event:State){
 
-    console.log(event, event.last.index)
-    this.id = event.last.index
+    console.log(event, event.last.index);
+    this.id = event.last.index;
     this.state = event;
-      this.terminal.value = this.state.crawled?.map((s)=>{
-        return s.url + ' crawled'
-      }).join('\n')
+    this.startStopUpdater(this.state.state);
+
+    this.terminal.value = this.state.crawled?.map((s) => {
+      return s.url + ' crawled';
+    }).join('\n')
+
+  }
+
+  generateBasicAuth(){
+    console.log('credentials', this.credentials);
+    let cred = `${this.credentials.username}:${this.credentials.password}`;
+    let encoded = Buffer.from(cred).toString('base64');
+    console.log('encoded', encoded , `Basic ${encoded}`);
+    this.state.basicAuth = `Basic ${encoded}`;
+  }
+  startStopUpdater(active:boolean) {
+    if(active) {
+      if(this.timerUpdater == undefined) {
+        this.timerUpdater  = setInterval(()=>{
+          this.ajax.getUrl('http://localhost:1223/last', this.state).subscribe((response:State)=>{
+            console.log('update status')
+            this.updateState(response);
+          })
+        }, 5000)
+      }
+    }else{
+      clearInterval(this.timerUpdater);
+      this.timerUpdater = undefined;
+    }
+
   }
 }
