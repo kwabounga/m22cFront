@@ -1,0 +1,9 @@
+<div class="mb-3">
+  <label for="inputLogin" class="form-label">Login</label>
+  <input type="text" class="form-control" id="inputLogin" [(ngModel)]="credentials.username" name="username">
+</div>
+<div class="mb-3">
+  <label for="inputPassword" class="form-label">Password</label>
+  <input type="password" class="form-control" id="inputPassword" [(ngModel)]="credentials.password" name="password">
+</div>
+<button class="btn btn-secondary" (click)="connect()">connection</button>

@@ -2,6 +2,7 @@ export interface Last {
   id:number;
   index:number;
   url:string;
+  status?:number;
 }
 export interface State {
   basicAuth:boolean|string;

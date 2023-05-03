@@ -8,34 +8,33 @@
         </div>
       </div>
     </div> -->
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2  d-grid gap-2"> 
-        <div class="border border-secondary overflow-hidden">
-          <div class="row">
-            <div class="col text-center p-2">Auth?</div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2  d-grid gap-2">
+        <div class="border border-secondary overflow-hidden fw-bold inner-shadow">
+          <div class="row ">
+            <div class="col text-center p-2 ">Auth?</div>
             <div class="col text-center bg-{{!state?.basicAuth?'secondary':'primary'}} p-2">{{!state?.basicAuth?'Anon':'Admin'}}</div>
           </div>
         </div>
       </div>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2  d-grid gap-2"> 
-        <div class="border border-secondary overflow-hidden">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2  d-grid gap-2">
+        <div class="border border-secondary overflow-hidden fw-bold inner-shadow">
           <div class="row ">
             <div class="col text-center p-2">État</div>
             <div class="col text-center bg-{{state?.state?'success':'danger'}} p-2">{{state?.state?'Actif':'Stoppé'}}</div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2  d-grid gap-2"> 
-        <div class="border border-secondary p-2">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2  d-grid gap-2">
+        <div class="border border-secondary p-2 fw-bold inner-shadow">
           <span *ngIf="state">
             ({{state?.last?.index}}) {{state?.crawled?.length}} / {{state?.all?.length}}
           </span>
-          
         </div>
       </div>
-      
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2  d-grid gap-2"> <div class="border border-secondary p-2">Catégorie ID {{state?.last?.id}}</div></div>
-      <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 p-2  d-grid gap-2"> <div class="border border-secondary p-2">{{(state?.last?.url!=='')?state?.last?.url:'empty'}}</div></div>
+
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 p-2  d-grid gap-2"> <div class="border border-secondary p-2 fw-bold inner-shadow">Catégorie ID {{state?.last?.id}}</div></div>
+      <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 p-2  d-grid gap-2"> <div class="border border-secondary p-2 d-flex inner-shadow"><span class="ellipsed font-monospace text-muted">{{(state?.last?.url!=='')?state?.last?.url:'empty'}}</span></div></div>
     </div>
     <div class="progress">
 
