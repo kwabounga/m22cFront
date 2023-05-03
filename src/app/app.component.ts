@@ -27,6 +27,7 @@ export class AppComponent  {
   state:State = {
     basicAuth:false,
     state:false,
+    length:0,
     last:{
       id:-0,
       index:-1,
@@ -98,7 +99,7 @@ export class AppComponent  {
     console.log('encoded', encoded , `Basic ${encoded}`);
 
 
-    this.ajax.getUrl('http://localhost:1223/last', {state:false,last:this.state.last,crawled:[],all:[],basicAuth:`Basic ${encoded}`})
+    this.ajax.getUrl('http://localhost:1223/last', {state:false,last:this.state.last, length:0, crawled:[],all:[],basicAuth:`Basic ${encoded}`})
     .subscribe(
       {
         next: (response:State) => {

@@ -7,34 +7,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- menu -->
-      <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul> -->
-      <!-- search -->
-      <!-- <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
       <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">credentials</button>
     </div>
   </div>
@@ -70,10 +42,17 @@
   </div>
 </div>
 <div *ngIf="!state?.basicAuth" class="container-fluid container-actions">
-  <app-auth-form
-    [credentials]="credentials"
-    (onConnecte)="generateBasicAuth()"
-    ></app-auth-form>
+  <div class="row g-2 p-2">
+    <div class="p-3 border bg-light">
+      <div class="card-body d-grid gap-2">
+              <app-auth-form
+          [credentials]="credentials"
+          (onConnecte)="generateBasicAuth()"
+          ></app-auth-form>
+      </div>
+    </div>
+  </div>
+  
 </div>
 
 
@@ -109,16 +88,7 @@
     <h5 id="offcanvasRightLabel">Offcanvas right</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body">
-    <!-- <div class="mb-3">
-      <label for="inputLogin" class="form-label">Login</label>
-      <input type="text" class="form-control" id="inputLogin" [(ngModel)]="credentials.username" name="username">
-    </div>
-    <div class="mb-3">
-      <label for="inputPassword" class="form-label">Password</label>
-      <input type="password" class="form-control" id="inputPassword" [(ngModel)]="credentials.password" name="password">
-    </div>
-    <button class="btn btn-secondary" (click)="generateBasicAuth()">connection</button> -->
+  <div class="offcanvas-body">    
     <app-auth-form
     [credentials]="credentials"
     (onConnecte)="generateBasicAuth()"

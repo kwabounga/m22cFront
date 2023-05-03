@@ -5,8 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:local": "npm run build && npm run after-build",
-    "after-build": "xcopy .\\dist\\m22c-front\\public\\* ..\\m22c\\public\\ /s/Y",
+    "build:local:win": "npm run build && npm run after-build:win",
+    "after-build:win": "xcopy .\\dist\\m22c-front\\public\\* ..\\m22c\\public\\ /s/Y",
+    "build:local:linux": "npm run build && npm run after-build:linux",
+    "after-build:linux": "cp -a ./dist/m22c-front/public/. ../m22c/public/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
